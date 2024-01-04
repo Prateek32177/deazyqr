@@ -8,12 +8,16 @@
   "dependencies": {
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
+    "@supabase/ui": "^0.36.5",
     "autoprefixer": "10.4.15",
     "geist": "^1.0.0",
+    "html2canvas": "^1.4.1",
+    "nanoid": "^5.0.4",
     "next": "latest",
     "postcss": "8.4.29",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-qr-code": "^2.0.12",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.3"
   },
