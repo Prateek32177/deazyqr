@@ -13,7 +13,7 @@ const [update, setUpdate] = useState(false)
   return (
     <>
 
-      <div className="flex-1 flex flex-col w-full px-8  justify-center gap-2 ">
+      <div className="flex-1 flex flex-col w-full px-8  justify-center gap-2 mt-12 lg:mt-0">
         <div className="flex  gap-2 ">
           <button onClick={()=>{setGenerate(true),setUpdate(false)}} className={`${generate && "border-pink-600"} py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border`}>
             Generate QR Code

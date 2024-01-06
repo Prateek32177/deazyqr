@@ -16,7 +16,7 @@ export async function POST(request, response) {
     .select();
 
     if(!error){
-      const shortUrl = `${process.env.BASE_URL}api/${shortId}`;
+      const shortUrl = `https://deazyqr-ars9o9lk9-prateek32177.vercel.app/api/${shortId}`;
 console.log("post", shortUrl)
       return Response.json({ shortUrl });
  

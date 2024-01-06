@@ -44,7 +44,7 @@ export default function Header() {
       <span className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-lg text-center font-bold ">
         The fastest way to generate QR Code's{" "}
         
-      <p className="text-lg lg:text-xl font-light font-mono">
+      <p className="text-lg lg:text-xl font-light font-mono text-zinc-400">
           Elevate Your Brand with Our Quick and Affordable Dynamic QR Solutions!
         </p>{" "}</span>
       <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
