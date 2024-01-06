@@ -1,6 +1,6 @@
 export const apiRequest = async (data) => {
     // const res = await fetch("http://localhost:3000/api/generateqr/shorten",
-    const res = await fetch(`https://deazyqr-ars9o9lk9-prateek32177.vercel.app/api/generateqr/${data.id}/update`,
+    const res = await fetch(`https://deazyqr-git-test-env-prateek32177.vercel.app/api/${data.id}/update`,
     
     {
       // Adding method type

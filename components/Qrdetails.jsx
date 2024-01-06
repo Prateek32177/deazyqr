@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 import html2canvas from "html2canvas";
 import { qrIcon, sparkleIcon } from "../Icons";
 const apiRequest = async (requestMethod, data) => {
-  const res = await fetch(` https://deazyqr-ars9o9lk9-prateek32177.vercel.app/api/shorten`, {
+  const res = await fetch(`https://deazyqr-git-test-env-prateek32177.vercel.app/api/shorten`, {
     // Adding method type
     method: requestMethod,
 
