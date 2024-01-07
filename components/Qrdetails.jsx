@@ -215,7 +215,7 @@ export default function Qrdetails() {
             // value={redirectUrl}
             value={redirectUrl}
           />
-          <h2 className="text-black font-mono">Scan me</h2>
+          <h2 className="text-black font-mono">Scan me.</h2>
         </div>
 
         <div className="flex justify-between">
