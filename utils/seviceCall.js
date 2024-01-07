@@ -1,7 +1,7 @@
 export const apiRequest = async (data) => {
     // const res = await fetch("http://localhost:3000/api/generateqr/shorten",
-    const res = await fetch(`https://deazyqr-git-test-env-prateek32177.vercel.app/api/${data.id}/update`,
-    
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/${data.id}/update`,
+
     {
       // Adding method type
       method: "PATCH",
@@ -14,7 +14,7 @@ export const apiRequest = async (data) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-  
+    console.log("construvted url in nservice call", res);
     const jsonRes = res.json();
     return jsonRes;
   };

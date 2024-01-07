@@ -19,7 +19,6 @@ export default async function AuthButton() {
     await supabase.auth.signOut()
     return redirect('/login')
   }
-console.log("details", user)
   return user ? (
     <div className="flex items-center gap-4">
       Hey, {user.email}!

@@ -22,7 +22,7 @@ const [update, setUpdate] = useState(false)
             Update Existing QR Code
           </button>
         </div>
-        <div class="my-6 flex flex-wrap items-center justify-around w-full p-8  bg-white  border rounded-lg shadow  dark:bg-btn-background hover:bg-btn-background-hover">
+        <div className="my-6 flex flex-wrap items-center justify-around w-full p-8  bg-white  border rounded-lg shadow  dark:bg-btn-background hover:bg-btn-background-hover">
          {
           generate && <Qrdetails /> }
          { update && <UpdateUrl/>

@@ -37,13 +37,13 @@ export default function Qrdetails() {
     setLoading(true);
     event.preventDefault();
     let shortID = await getIdFromUrl(formData.existingShortUrl);
-    const existingURl = await fetch(`${process.env.BASE_URL}api/${shortID}`).then((res)=>res.json()).then(data=>console.log("existing url", data))
+    // const existingURl = await fetch(`${process.env.BASE_URL}api/${shortID}`).then((res)=>res.json()).then(data=>console.log("existing url", data))
 
     await apiRequest({ id: shortID, longUrl: formData.newDestinationUrl }).then(
       (res) => {
         setResMessage(res), setLoading(false);
       }
-    );
+    ).catch((err)=>{setLoading(false) ,console.log("Error in Updating the destination url", err)}).finally(()=>setLoading(false));
 
     console.log("formdata request", formData, shortID);
   };
@@ -78,7 +78,7 @@ export default function Qrdetails() {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-5">
+          {/* <div className="mb-5">
             <label
               htmlFor="existingDestinationUrl"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -92,7 +92,7 @@ export default function Qrdetails() {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               disabled
             />
-          </div>
+          </div> */}
           <div className="mb-5">
             <label
               htmlFor="newDestinationUrl"

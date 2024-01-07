@@ -4,7 +4,10 @@ import QRCode from "react-qr-code";
 import html2canvas from "html2canvas";
 import { qrIcon, sparkleIcon } from "../Icons";
 const apiRequest = async (requestMethod, data) => {
-  const res = await fetch(`https://deazyqr-git-test-env-prateek32177.vercel.app/api/shorten`, {
+
+  const consturl = `${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/shorten`
+  console.log("construvted url", consturl);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/shorten`, {
     // Adding method type
     method: requestMethod,
 
@@ -33,16 +36,20 @@ export default function Qrdetails() {
   const [shortUrl, setShortUrl] = useState("");
 
   const downloadQRCode = () => {
-    html2canvas(qrCodeRef.current, { backgroundColor: "#000" }).then(
+    html2canvas(qrCodeRef.current, { backgroundColor: "#fff" }).then(
       (canvas) => {
         const qrCodeImage = canvas.toDataURL("image/png");
         const downloadLink = document.createElement("a");
         downloadLink.href = qrCodeImage;
-        downloadLink.download = "styled-qrcode.png";
+        downloadLink.download = "deazyQR.png";
         downloadLink.click();
       }
     );
   };
+
+  const copyQrCode = ()=>{
+    html2canvas(qrCodeRef.current, { backgroundColor: "#000" }).then(canvas => canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({'image/png': blob})])));
+  }
 
   // Event handler for input changes
   const handleInputChange = (event) => {
@@ -69,10 +76,11 @@ export default function Qrdetails() {
     // if we have direct destination url use below one
     await apiRequest("POST", {
       longUrl:formData.destinationUrl,
-    }).then((res) => {setShortUrl(res.shortUrl),setRedirectUrl(res.shortUrl),    setLoading(false)});
+    }).then((res) => {setShortUrl(res.shortUrl),setRedirectUrl(res.shortUrl),    setLoading(false)}).catch((err)=>setLoading(false));
 
     console.log("post request", redirectUrl);
   };
+
   return (
     <>
       <div>
@@ -80,24 +88,24 @@ export default function Qrdetails() {
           {qrIcon}
          
 
-          <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
             Generate QR
           </h5>
-          <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
          Enter the Destination Url below
           </p>
         </div>
-        <form class="max-w-sm " onSubmit={handleSubmit}>
-          {/* <div class="mb-5">
+        <form className="max-w-sm " onSubmit={handleSubmit}>
+          {/* <div className="mb-5">
             <label
               htmlFor="restaurant"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Select Restaurant
             </label>
             <select
               name="restaurant"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option selected>Choose a Restaurant</option>
               <option value="hardrock">HardRock</option>
@@ -106,25 +114,25 @@ export default function Qrdetails() {
               <option value="social">Social Restro</option>
             </select>
           </div>
-          <div class="mb-5">
+          <div className="mb-5">
             <label
               htmlFor="restaurantID"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Restaurant ID
             </label>
             <input
               name="restaurantID"
-              class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Loading ID.."
               value={formData.restaurantID}
               disabled
             />
           </div>
-          <div class="mb-5">
+          <div className="mb-5">
             <label
               htmlFor="tablenumber"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Table/Room Number
             </label>
@@ -132,22 +140,22 @@ export default function Qrdetails() {
               type="number"
               name="tablenumber"
               value={formData.tablenumber}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
               onChange={handleInputChange}
             />
           </div> */}
-          <div class="mb-5">
+          <div className="mb-5">
             <label
               htmlFor="tablenumber"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
             Enter Destination Url
             </label>
             <input
               name="destinationUrl"
               value={formData.destinationUrl}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
               placeholder="Enter Destination URL here"
               onChange={handleInputChange}
@@ -156,7 +164,7 @@ export default function Qrdetails() {
 
           <button
             type="submit"
-            class="text-whitecursor-pointer inline-flex items-center space-x-2 text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-button hover:bg-brand-button/80 border-brand focus-visible:outline-brand-600 shadow-sm text-sm px-4 py-2 text-white bg-pink-700 hover:bg-pink-600"
+            className="text-whitecursor-pointer inline-flex items-center space-x-2 text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-button hover:bg-brand-button/80 border-brand focus-visible:outline-brand-600 shadow-sm text-sm px-4 py-2 text-white bg-pink-700 hover:bg-pink-600"
           >
              {loading ? (
               <>
@@ -182,14 +190,14 @@ export default function Qrdetails() {
         
           </button>
         </form>
-        <div class="mt-5">
+        <div className="mt-5">
        { shortUrl && <a href={shortUrl}   target="_blank"
-      rel="noreferrer" class="flex flex-col justify-between  py-3 px-3 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-md dark:dark:bg-btn-background-hover border dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-btn-background  items-start">
-           <span class="text-xs bg-blue-600 rounded text-white px-4 py-2 my-1.5">Generated Short Link</span> 
+      rel="noreferrer" className="flex flex-col justify-between  py-3 px-3 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-md dark:dark:bg-btn-background-hover border dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-btn-background  items-start">
+           <span className="text-xs bg-blue-600 rounded text-white px-4 py-2 my-1.5">Generated Short Link</span> 
            
-           <span className="flex items-center">    <span class="text-sm font-medium m-1.5 ">{shortUrl}</span>
-           <span> <svg class="w-2.5 h-2.5  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+           <span className="flex items-center">    <span className="text-sm font-medium m-1.5 ">{shortUrl}</span>
+           <span> <svg className="w-2.5 h-2.5  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
             </svg></span> </span>
         </a>}
         </div>
@@ -198,30 +206,31 @@ export default function Qrdetails() {
       <div>
         <div
           ref={qrCodeRef}
-          className="border p-5 rounded-md "
+          className={`border p-5 my-3 rounded-md ${loading && "animate-pulse "} bg-slate-200`}
         >
           <QRCode
             bgColor="transparent"
-            fgColor="white"
+            // fgColor="white"
             id="QRCode"
+            // value={redirectUrl}
             value={redirectUrl}
-            level="M"
           />
+          <h2 className="text-black font-mono">Scan me</h2>
         </div>
 
         <div className="flex justify-between">
           <input
             type="button"
             value="Download QR"
-            className="my-5 py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border"
+            className="cursor-pointer  my-5 py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border"
             onClick={downloadQRCode}
           />
-          <input
+          {/* <input
             type="button"
             value="Copy QR"
-            className="my-5 py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border"
-            onClick={downloadQRCode}
-          />
+            className="cursor-pointer my-5 py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border"
+            onClick={copyQrCode}
+          /> */}
         </div>
       </div>
     </>

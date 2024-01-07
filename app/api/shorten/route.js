@@ -16,7 +16,7 @@ export async function POST(request, response) {
     .select();
 
     if(!error){
-      const shortUrl = `https://deazyqr-git-test-env-prateek32177.vercel.app/api/${shortId}`;
+      const shortUrl = `${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/${shortId}`;
 console.log("post", shortUrl)
       return Response.json({ shortUrl });
  

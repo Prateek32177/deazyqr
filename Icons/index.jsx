@@ -3,18 +3,18 @@ export const qrIcon = (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
-    stroke-width="1.5"
+    strokeWidth="1.5"
     stroke="currentColor"
-    class="h-8 w-8 rounded-lg mb-3"
+    className="h-8 w-8 rounded-lg mb-3"
   >
     <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z"
     />
     <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z"
     />
   </svg>
@@ -27,7 +27,7 @@ export const updateIcon = (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    class="h-8 w-8 rounded-lg mb-3"
+    className="h-8 w-8 rounded-lg mb-3"
   >
     <path
       strokeLinecap="round"
@@ -39,7 +39,7 @@ export const updateIcon = (
 
 export const infoIcon = (
   <svg
-    class="flex-shrink-0 w-4 h-4"
+    className="flex-shrink-0 w-4 h-4"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
@@ -51,7 +51,7 @@ export const infoIcon = (
 
 export const cancelIcon = (
   <svg
-    class="w-3 h-3"
+    className="w-2.5 h-2.5"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -59,9 +59,9 @@ export const cancelIcon = (
   >
     <path
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
       d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
     />
   </svg>
