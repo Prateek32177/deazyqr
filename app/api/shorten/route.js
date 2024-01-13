@@ -9,18 +9,15 @@ export async function POST(request, response) {
   const supabase = createClient(cookieStore);
   // Generate a unique identifier for the shortened URL
   const shortId = nanoid(8);
-
+  const shortUrl = `${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/${shortId}`;
   const { data, error } = await supabase
     .from("QRLinks")
-    .insert([{ redirectionUrl: longUrl, codeID: shortId }])
+    .insert([{ redirectionUrl: longUrl, codeID: shortId, shortUrl }])
     .select();
 
-    if(!error){
-      const shortUrl = `${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/${shortId}`;
-console.log("post", shortUrl)
-      return Response.json({ shortUrl });
- 
-    }
-    return Response.json({error });
+  if (!error) {
+     console.log("post", shortUrl);
+    return Response.json({ shortUrl });
+  }
+  return Response.json({ error });
 }
-

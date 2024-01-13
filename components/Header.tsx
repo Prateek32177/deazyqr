@@ -6,8 +6,7 @@ export default function Header() {
     <div className="flex flex-col gap-16 items-center">
       <div className="flex gap-6 justify-center items-center">
         <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
+          href="#"
           rel="noreferrer"
           className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-green-400 to-yellow-200"
         >
@@ -15,7 +14,7 @@ export default function Header() {
           DeazyQR.
         </a>
         <span className="border-l rotate-45 h-6" />
-        <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
+        <a  href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs" target="_blank" rel="noreferrer">
    <SupabaseLogo />
         </a>
       </div>

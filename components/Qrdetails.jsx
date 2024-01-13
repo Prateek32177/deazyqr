@@ -3,6 +3,8 @@ import React, { useState, useRef } from "react";
 import QRCode from "react-qr-code";
 import html2canvas from "html2canvas";
 import { qrIcon, sparkleIcon } from "../Icons";
+import Share from "./ShareButton"
+
 const apiRequest = async (requestMethod, data) => {
 
   const consturl = `${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/shorten`
@@ -46,10 +48,6 @@ export default function Qrdetails() {
       }
     );
   };
-
-  const copyQrCode = ()=>{
-    html2canvas(qrCodeRef.current, { backgroundColor: "#000" }).then(canvas => canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({'image/png': blob})])));
-  }
 
   // Event handler for input changes
   const handleInputChange = (event) => {
@@ -225,12 +223,8 @@ export default function Qrdetails() {
             className="cursor-pointer  my-5 py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border"
             onClick={downloadQRCode}
           />
-          {/* <input
-            type="button"
-            value="Copy QR"
-            className="cursor-pointer my-5 py-2 px-3 flex rounded-md no-underline hover:bg-btn-background-hover border"
-            onClick={copyQrCode}
-          /> */}
+           {qrCodeRef.current && <Share imageElement={qrCodeRef.current} />}
+
         </div>
       </div>
     </>

@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { apiRequest } from "../utils/seviceCall";
-import { updateIcon } from "../Icons";
+import { updateIcon, loaderIcon , SpinUpdateIcon} from "../Icons";
 import { SuccessAlert, FailedAlert } from "./Alert";
+import QRCodeReader from "./ScanQr"
 
 export default function Qrdetails() {
   // const qrCodeRef = useRef(null);
@@ -14,6 +15,7 @@ export default function Qrdetails() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [imgDataLoading, setImageDataLoading] = useState(false)
   const [resMessage, setResMessage] = useState("");
   // const [redirectUrl, setRedirectUrl] = useState("");
 
@@ -37,7 +39,6 @@ export default function Qrdetails() {
     setLoading(true);
     event.preventDefault();
     let shortID = await getIdFromUrl(formData.existingShortUrl);
-    // const existingURl = await fetch(`${process.env.BASE_URL}api/${shortID}`).then((res)=>res.json()).then(data=>console.log("existing url", data))
 
     await apiRequest({ id: shortID, longUrl: formData.newDestinationUrl }).then(
       (res) => {
@@ -47,11 +48,26 @@ export default function Qrdetails() {
 
     console.log("formdata request", formData, shortID);
   };
+
+  const handleQRScan = async (scannedValue)=>{
+    setImageDataLoading(true)
+    let shortID = await getIdFromUrl(scannedValue);
+
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_PREVIEW}/api/${shortID}?type=retrieve`).then((res)=>res.json()).then(data=>
+      {setFormData({
+        ...formData,
+        ["existingShortUrl"]: scannedValue,
+        ["existingDestinationUrl"]: data[0].redirectionUrl,
+      }),setImageDataLoading(false)})
+
+  }
   return (
     <>
-      <div>
+      <div className="flex flex-wrap items-center justify-around w-full">
         <div>
-          {updateIcon}
+        <div className="max-w-sm ">
+        {updateIcon}
+          {imgDataLoading &&  <p> {loaderIcon} Fetching QR Details..</p>}
 
           <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
             Update QR Destination URL
@@ -72,13 +88,13 @@ export default function Qrdetails() {
             <input
               name="existingShortUrl"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Paste Your QR Code URL Here"
+              placeholder={"Paste Your QR Code URL Here"}
               value={formData.existingShortUrl}
               required
               onChange={handleInputChange}
             />
           </div>
-          {/* <div className="mb-5">
+          <div className="mb-5">
             <label
               htmlFor="existingDestinationUrl"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -89,10 +105,10 @@ export default function Qrdetails() {
               name="existingDestinationUrl"
               value={formData.existingDestinationUrl}
               placeholder="Your Exitsing Destination URL"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
               disabled
             />
-          </div> */}
+          </div>
           <div className="mb-5">
             <label
               htmlFor="newDestinationUrl"
@@ -117,19 +133,7 @@ export default function Qrdetails() {
           >
             {loading ? (
               <>
-                {" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="animate-spin h-5 w-5 mr-1"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+               { loaderIcon}
                 <span>Updating....</span>{" "}
               </>
             ) : (
@@ -143,6 +147,8 @@ export default function Qrdetails() {
         ) : (
           <FailedAlert data={resMessage} />
         )}
+        </div>
+        <QRCodeReader handleQRScanned={handleQRScan}/>
       </div>
     </>
   );

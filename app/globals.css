@@ -42,5 +42,5 @@
 }
 
 .card-gradient-background{
-  background: radial-gradient(ellipse at left bottom, rgb(44 70 52) 10%, rgb(0 0 0) 80%);
+  background: radial-gradient(ellipse at right bottom, rgb(44 70 52) 10%, rgb(0 0 0) 80%);
 }

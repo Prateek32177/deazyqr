@@ -15,7 +15,7 @@ export async function PATCH(request,{params}) {
     .select()
             
     if(!error && data.length>0)
-{return Response.json({message:'Destination URL Succesfully Updated', error:false})}
+{return Response.json({message:'Destination URL Succesfully Updated', data, error:false})}
 
 return Response.json({message: "URL Doesn't Exist! Please Recheck QR code URL", error:true})
   }

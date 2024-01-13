@@ -23,7 +23,7 @@ export default function NavBar(){
     return(
         <>
         
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16 sticky top-0 z-10 backdrop-blur font-mono font-bold">
+        <nav  className="translate-x-[-50%] w-10/12 left-1/2 rounded-3xl flex justify-center border  border-foreground/10 h-16 fixed top-5 z-10 backdrop-blur font-mono font-bold">
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
         <Link
       href="/"
