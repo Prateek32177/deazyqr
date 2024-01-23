@@ -28,10 +28,12 @@ const apiRequest = async (requestMethod, data) => {
 
 export default function Qrdetails() {
   const qrCodeRef = useRef(null);
+
   const [formData, setFormData] = useState({
     restaurantID: 3423423,
     tablenumber: "",
-    destinationUrl:""
+    destinationUrl:"",
+    datetime: new Date()
   });
   const [loading, setLoading] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState("");
@@ -48,7 +50,7 @@ export default function Qrdetails() {
       }
     );
   };
-
+console.log('datetiem changing', formData.datetime)
   // Event handler for input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -159,7 +161,23 @@ export default function Qrdetails() {
               onChange={handleInputChange}
             />
           </div>
-
+          {/* <div className="mb-5">
+            <label
+              htmlFor="datetime"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+         Expiring Date and  time of QR
+            </label>
+            <input
+              type="datetime-local"
+              name="datetime"
+              value={formData.datetime}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              onChange={handleInputChange}
+              min={new Date()}
+            />
+          </div> */}
           <button
             type="submit"
             className="text-whitecursor-pointer inline-flex items-center space-x-2 text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-button hover:bg-brand-button/80 border-brand focus-visible:outline-brand-600 shadow-sm text-sm px-4 py-2 text-white bg-pink-700 hover:bg-pink-600"
@@ -209,8 +227,9 @@ export default function Qrdetails() {
           <QRCode
             bgColor="transparent"
             // fgColor="white"
+
             id="QRCode"
-            // value={redirectUrl}
+            // style={{"path": { fill: fgColor }}}
             value={redirectUrl}
           />
           <h2 className="text-black font-mono">Scan me.</h2>

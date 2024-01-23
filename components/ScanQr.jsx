@@ -86,7 +86,7 @@ const QRCodeReader = ({ handleQRScanned }) => {
   };
   return (
     <div>
-      <div class="dark:bg-black dark:text-white p-6 rounded-lg border-2 border-gray-700">
+      <div class="dark:bg-black dark:text-white p-6 rounded-lg border-2 border-gray-700 mt-3" >
         <div class="flex flex-col items-center justify-center space-y-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ const QRCodeReader = ({ handleQRScanned }) => {
             <polyline points="17 8 12 3 7 8"></polyline>
             <line x1="12" x2="12" y1="3" y2="15"></line>
           </svg>
-          <h2 class="text-2xl font-bold text-center">Upload your QR Code</h2>
+          <h2 class="text-xl font-bold text-center">Upload your QR Code</h2>
           {/* <p>Drag and drop your file here or click to select a file</p> */}
           <div class="mt-4">
             <label

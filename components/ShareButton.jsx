@@ -14,8 +14,8 @@ const ImageShareButton = ({ imageElement }) => {
             // Share using the Web Share API
             await navigator.share({
               files: [new File([blob], 'image.png', { type: 'image/png' })],
-              title: 'Image Share',
-              text: 'Check out this image!',
+              title: 'QR Share',
+              text: 'Your Dynamic QR Code!',
             });
           } else {
             throw new Error('Web Share API not supported.');
