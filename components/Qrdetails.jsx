@@ -220,7 +220,7 @@ export default function Qrdetails() {
                 type="datetime-local"
                 name="datetime"
                 value={formData.datetime}
-                className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-slate-900 dark:text-white  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
                 onChange={handleInputChange}
                 min={new Date().toISOString().slice(0, -8)}

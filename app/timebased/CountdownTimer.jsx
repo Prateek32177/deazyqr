@@ -71,8 +71,8 @@ export default function Countdown({ targetDateTime }) {
             </h3>
           </div>
         ) : (
-         <><Snippet color="success" className="my-5" symbol={"Secret Code :"}>sads-adfd-sfdgs-dfdsf</Snippet>
-          <h3 class="text-xl font-thin font-mono text-gray-800 dark:text-white">
+         <><Snippet color="success" className="my-5"  symbol={"Secret Code :"}>sads-adfd-sfdgs-dfdsf</Snippet>
+          <h3 class="text-xl font-thin font-mono text-gray-800 dark:text-white px-8">
             Your QR code will be expiring in
           </h3></> 
         )}

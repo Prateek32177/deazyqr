@@ -47,8 +47,7 @@
 
   /* Style for the internal calendar icon */
   input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-      filter: invert(100%); /* Invert the color to white */
-  }
+  color-scheme:dark}
 
 
   
