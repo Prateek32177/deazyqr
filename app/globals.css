@@ -49,5 +49,10 @@
   input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   color-scheme:dark}
 
+  input[type="datetime-local"]::placeholder{
+    color-scheme:dark;
+  color:white
+  }
+
 
   
