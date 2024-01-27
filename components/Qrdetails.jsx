@@ -220,10 +220,10 @@ export default function Qrdetails() {
                 type="datetime-local"
                 name="datetime"
                 value={formData.datetime}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:bg-btn-background dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-btn-background dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
                 onChange={handleInputChange}
-                min={new Date()}
+                min={new Date().toISOString().slice(0, -8)}
               />
             </div>
           )}
@@ -259,11 +259,12 @@ export default function Qrdetails() {
         </form>
         <div className="mt-5 wrap">
           {shortUrl && (
-            <span className="flex items-center">
+            // <span className="flex items-center">
               <Snippet
                 color="success"
-                className="flex-wrap text-white"
-                symbol={"Short URL :"}
+                className="flex-wrap items-start"
+                symbol={shortUrlSymbol}
+                codeString = {shortUrl}
               >
                 {/* <a
                   href={shortUrl}
@@ -271,10 +272,10 @@ export default function Qrdetails() {
                   rel="noreferrer"
                   className="flex flex-col justify-between  py-3 px-3 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-md dark:dark:bg-btn-background-hover border dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-btn-background  items-start"
                 > */}
-                <span className="whitespace-break-spaces "> {shortUrl}</span>
+                <span className="whitespace-normal"> {shortUrl}</span>
                 {/* </a> */}
               </Snippet>
-            </span>
+            // </span>
           )}
         </div>
         {/* <div className="w-1 h-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent mx-8" /> */}
@@ -310,3 +311,10 @@ export default function Qrdetails() {
     </>
   );
 }
+
+
+const shortUrlSymbol = (
+  <>
+  <pre className="font-bold">Short URL :</pre>
+  </>
+)

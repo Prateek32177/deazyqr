@@ -48,7 +48,7 @@ export default function Countdown({ targetDateTime }) {
         timeRemaining.hours === 0 &&
         timeRemaining.minutes === 0 &&
         timeRemaining.seconds === 0 ? (
-          <div className="text-center">
+          <div className="text-center" style={{textAlign: "-webkit-center"}}>
             <div className="">
               {" "}
               <svg
@@ -66,19 +66,19 @@ export default function Countdown({ targetDateTime }) {
                 />
               </svg>
             </div>
-            <h3 class="text-xl  text-yellow-400 dark:text-yellow-400">
-              Your QR has been Expired !
+            <h3 class="text-xl font-thin font-mono  text-yellow-400 dark:text-yellow-400">
+              Your QR code has Expired !
             </h3>
           </div>
         ) : (
          <><Snippet color="success" className="my-5" symbol={"Secret Code :"}>sads-adfd-sfdgs-dfdsf</Snippet>
-          <h3 class="text-xl font-thin  text-gray-800 dark:text-white">
+          <h3 class="text-xl font-thin font-mono text-gray-800 dark:text-white">
             Your QR code will be expiring in
           </h3></> 
         )}
       </div>
  
-      <div className="grid grid-flow-col gap-5 text-center auto-cols-max ">
+      <div className="grid grid-flow-col gap-5 text-center auto-cols-max place-content-center">
         <div
           className="flex flex-col p-2 bg-neutral dark:bg-amber-500  bg-amber-500 rounded-box rounded-lg  text-amber-400  
                  bg-opacity-25  dark:bg-opacity-25"

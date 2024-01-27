@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import jsQR from "jsqr";
-import { QrReader } from "react-qr-reader";
 
 const QRCodeReader = ({ handleQRScanned }) => {
   const [result, setResult] = useState("");
@@ -10,7 +9,6 @@ const QRCodeReader = ({ handleQRScanned }) => {
   useEffect(() => {
     // Additional logic after a successful scan
     // handleQRScanned(result);
-    console.log("QR Code Scanned:", result);
   }, [result]);
   const handleImageCapture = async () => {
     if (videoRef.current) {
