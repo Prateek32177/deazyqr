@@ -1,5 +1,6 @@
 import { GeistSans } from 'geist/font/sans'
 import './globals.css'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import NavBar from '@/components/NavBar'
 import Footer from "@/components/Footer"
 const defaultUrl = process.env.VERCEL_URL
@@ -20,11 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
-        <NavBar/>
+        <NavBar/>  
         <main className="min-h-screen flex flex-col items-center">
           {children}
         </main>
         <Footer/>
+        <SpeedInsights />
       </body>
     </html>
   )
