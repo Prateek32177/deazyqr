@@ -1,0 +1,23 @@
+{
+  "featureData": [
+    {
+      "id": "f1",
+      "cardTitle": "Dynamic Expiring QR Codes",
+      "cardDescp": "Expires after user defined timing and After expiration, access to redirections or data retrieval is restricted.",
+      "link" :"/generateqr"
+    },
+    {
+      "id": "f2",
+      "cardTitle": "Single Scan Expiring Qr code",
+      "cardDescp": "Expire after a single scan,  Perfect for heightened security and dynamic user interactions.",
+      "link" :"#"
+    },
+    {
+      "id": "f3",
+      "cardTitle": "Everchanging QRs with every scan",
+      "cardDescp": "Dynamically change with each scan, providing a secure and ever-evolving user experience.",
+      "link" :"#"    
+    
+    }
+  ]
+}
