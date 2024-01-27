@@ -44,3 +44,11 @@
 .card-gradient-background{
   background: radial-gradient(ellipse at right bottom, rgb(44 70 52) 10%, rgb(0 0 0) 80%);
 }
+
+  /* Style for the internal calendar icon */
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      filter: invert(100%); /* Invert the color to white */
+  }
+
+
+  

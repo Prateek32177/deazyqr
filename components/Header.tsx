@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import FeatureCard from "../components/FeatureCard";
 import { flashIcon } from "../Icons";
+import {Chip} from "@nextui-org/react";
+
 export default async function Header() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
@@ -23,23 +25,29 @@ export default async function Header() {
   };
 
   return (
+    <>
+     
     <div className="flex flex-col gap-16 items-center">
-      <div className="flex gap-6 justify-center items-center ">
+   
+      <div className="flex flex-col gap-3 justify-center items-center ">
+      <Chip className="text-green-200 bg-green-400 bg-opacity-5  dark:bg-opacity-20" variant="flat">
+        Get complimentary short URL with dynamic QR
+      </Chip>
         <a
           href="#"
           rel="noreferrer"
-          className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-green-400 to-yellow-200"
+          className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-green-400 to-yellow-200"
         >
           DeazyQR.
         </a>
-        <span className="border-l rotate-45 h-6" />
+        {/* <span className="border-l rotate-45 h-6" />
         <a
           href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
           target="_blank"
           rel="noreferrer"
         >
           <SupabaseLogo />
-        </a>
+        </a> */}
       </div>
       <Link
         href={
@@ -63,7 +71,7 @@ export default async function Header() {
       <h1 className="font-extrabold text-transparent text-3xl text-white ">
         What We Serve{" "}
       </h1>
-      <div className="grid gap-4 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 ">
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3  sm:w-3/4 md:w-full m-auto">
         <FeatureCard cardTitle="Time Based Expiring QR code" />
 
         <FeatureCard cardTitle=" Single Scan Expiring Qr code" />
@@ -71,6 +79,6 @@ export default async function Header() {
         <FeatureCard cardTitle="Everytime with scan changing Qr code" />
       </div>
       <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
-    </div>
+    </div></>
   );
 }
