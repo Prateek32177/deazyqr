@@ -30,7 +30,7 @@ export default async function Header() {
         <div className="flex flex-col gap-3 justify-center items-center ">
           <Chip
             color="success"
-            className="text-green-800 bg-green-800 bg-opacity-70 dark:text-green-500  dark:bg-opacity-20 whitespace-pre"
+            className="text-green-500 bg-green-800 bg-opacity-70 dark:text-green-500  dark:bg-opacity-20 whitespace-pre"
             variant="flat"
           >
             Now Get complimentary short URL with QR
