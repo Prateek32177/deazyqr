@@ -2,7 +2,7 @@
 export default function Card() {
   return (
     <>
-    <div class="flex flex-col border shadow-sm rounded-xl m-auto w-11/12 mb-10 ">
+    <div class="bg-zinc-900 relative bg-opacity-80 flex flex-col border shadow-sm rounded-xl m-auto w-10/12 mb-10 ">
   <div class=" border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-200 ">
     <p class="mt-1 text-xl font-extrabold">
       Why Dynamic QR !

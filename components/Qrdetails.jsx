@@ -37,6 +37,7 @@ export default function Qrdetails() {
     tablenumber: "",
     destinationUrl: "",
     datetime: new Date(),
+    colourPicker: "#000",
   });
   const [loading, setLoading] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState("");
@@ -261,21 +262,21 @@ export default function Qrdetails() {
         <div className="mt-5 wrap">
           {shortUrl && (
             // <span className="flex items-center">
-              <Snippet
-                color="success"
-                className="flex-wrap items-start"
-                symbol={shortUrlSymbol}
-                codeString = {shortUrl}
-              >
-                {/* <a
+            <Snippet
+              color="success"
+              className="flex-wrap items-start"
+              symbol={shortUrlSymbol}
+              codeString={shortUrl}
+            >
+              {/* <a
                   href={shortUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="flex flex-col justify-between  py-3 px-3 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-md dark:dark:bg-btn-background-hover border dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-btn-background  items-start"
                 > */}
-                <span className="whitespace-normal"> {shortUrl}</span>
-                {/* </a> */}
-              </Snippet>
+              <span className="whitespace-normal"> {shortUrl}</span>
+              {/* </a> */}
+            </Snippet>
             // </span>
           )}
         </div>
@@ -284,21 +285,34 @@ export default function Qrdetails() {
       <div>
         <div
           ref={qrCodeRef}
-          className={`border p-5 my-3 rounded-md ${
+          className={` p-5 my-3 rounded-md ${
             loading && "animate-pulse "
           } bg-slate-200`}
         >
           <QRCode
             bgColor="transparent"
-            // fgColor="white"
-
+            fgColor={formData.colourPicker}
             id="QRCode"
-            // style={{"path": { fill: fgColor }}}
+            style={{ border: "green" }}
             value={redirectUrl}
           />
           <h2 className="text-black font-mono">Scan me.</h2>
         </div>
-
+        <label
+          for="hs-color-input"
+          class="block text-sm font-medium mb-2 dark:text-white"
+        >
+        Change QR color
+        </label>
+        <input
+          onChange={handleInputChange}
+          name="colourPicker"
+          type="color"
+          class="p-1 h-10 w-14 block bg-white border border-gray-200 cursor-pointer w-10 rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700"
+          id="hs-color-input"
+          value="#2563eb"
+          title="Choose your color"
+        />
         <div className="flex justify-between">
           <input
             type="button"
@@ -313,9 +327,8 @@ export default function Qrdetails() {
   );
 }
 
-
 const shortUrlSymbol = (
   <>
-  <pre className="font-bold">Short URL :</pre>
+    <pre className="font-bold">Short URL :</pre>
   </>
-)
+);
